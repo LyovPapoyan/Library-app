@@ -1,0 +1,20 @@
+<mat-dialog-content>
+    <h2 mat-dialog-title>{{library.Name}}</h2>
+    
+    <mat-list>
+      <mat-list-item>
+        <span matListItemTitle>Адрес:</span>
+        <span matListItemLine>{{library.Address}}</span>
+      </mat-list-item>
+      
+      <mat-list-item>
+        <span matListItemTitle>Тип:</span>
+        <span matListItemLine>{{library.Type}}</span>
+      </mat-list-item>
+      
+    </mat-list>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Закрыть</button>
+  </mat-dialog-actions>
