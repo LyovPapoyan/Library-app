@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
-import { Library } from '../../interfaces/library.interface';
+import { IBook } from '../../interfaces/books.interface';
 
 @Component({
   selector: 'app-details',
@@ -12,5 +12,5 @@ import { Library } from '../../interfaces/library.interface';
   styleUrl: './details.component.scss'
 })
 export class DetailsComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public library: Library) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public book: IBook) {}
 }

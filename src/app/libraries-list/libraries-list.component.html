@@ -1,36 +1,59 @@
 <div class="container">
+    <h1 class="page-title">Поиск книг в Open Library</h1>
+
     <div class="search-container">
         <mat-form-field appearance="outline">
             <mat-label>Поиск по названию</mat-label>
             <input matInput [(ngModel)]="searchWord">
         </mat-form-field>
 
-        <button mat-raised-button color="primary" class="searchBtn" (click)="searchLibraries()">
-            Найти библиотеки
+        <button mat-raised-button color="primary" class="searchBtn" (click)="searchBooks()">
+            Найти книги
         </button>
     </div>
-    
-    @if (libraries.length) {
-    <table mat-table [dataSource]="libraries" class="mat-elevation-z8">
-        <ng-container matColumnDef="index">
-            <th mat-header-cell *matHeaderCellDef> № </th>
-            <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
-        </ng-container>
 
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Название </th>
-            <td mat-cell *matCellDef="let element" [TextHighlight]="element.Name" [search]="searchWord"></td>
-        </ng-container>
+    @if (!isLoading) {
+        @if (books.length) {
+        <table mat-table [dataSource]="books" class="mat-elevation-z8">
+            <ng-container matColumnDef="index">
+                <th mat-header-cell *matHeaderCellDef> № </th>
+                <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
+            </ng-container>
 
-        <ng-container matColumnDef="address">
-            <th mat-header-cell *matHeaderCellDef> Адрес </th>
-            <td mat-cell *matCellDef="let element">
-                {{element.Address}}
-            </td>
-        </ng-container>
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef>Название книги</th>
+                <td mat-cell *matCellDef="let element" [TextHighlight]="element.title" [search]="searchWord"></td>
+            </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="['index', 'name', 'address']" tr>
-        <tr mat-row *matRowDef="let row; columns: ['index', 'name', 'address']" (click)="openLibraryCard(row)"></tr>
-    </table>
+            <ng-container matColumnDef="author">
+                <th mat-header-cell *matHeaderCellDef> Автор </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.author_name}}
+                </td>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="publish_year">
+                <th mat-header-cell *matHeaderCellDef> Первая публикация (год) </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.first_publish_year}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="edition_count">
+                <th mat-header-cell *matHeaderCellDef> Количество изданий </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.edition_count}}
+                </td>
+            </ng-container> -->
+
+            <tr mat-header-row *matHeaderRowDef="['index', 'title', 'author']" tr>
+            <tr mat-row *matRowDef="let row; columns: ['index', 'title', 'author']"
+                (click)="openLibraryCard(row)"></tr>
+        </table>
+        }
+    } @else {
+    <div class="loader">
+        <mat-spinner></mat-spinner>
+    </div>
     }
 </div>

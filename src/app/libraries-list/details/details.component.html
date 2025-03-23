@@ -1,20 +1,30 @@
-<mat-dialog-content>
-    <h2 mat-dialog-title>{{library.Name}}</h2>
-    
-    <mat-list>
-      <mat-list-item>
-        <span matListItemTitle>Адрес:</span>
-        <span matListItemLine>{{library.Address}}</span>
-      </mat-list-item>
-      
-      <mat-list-item>
-        <span matListItemTitle>Тип:</span>
-        <span matListItemLine>{{library.Type}}</span>
-      </mat-list-item>
-      
-    </mat-list>
-  </mat-dialog-content>
-  
-  <mat-dialog-actions>
-    <button mat-button mat-dialog-close>Закрыть</button>
-  </mat-dialog-actions>
+<mat-dialog-content class="container">
+
+  <h2 mat-dialog-title class="author">{{book.author_name}}</h2>
+  @if (book.author_key.length) {
+    <div class="picture">
+      <img [src]="'https://covers.openlibrary.org/a/olid/' + book.author_key[0] + '.jpg'" alt="Фото автора">
+    </div>
+  }
+  <mat-list>
+    <mat-list-item>
+      <span matListItemTitle>Название книги</span>
+      <span matListItemLine>{{book.title}}</span>
+    </mat-list-item>
+
+    <mat-list-item>
+      <span matListItemTitle>Первая публикация (год)</span>
+      <span matListItemLine>{{book.first_publish_year}}</span>
+    </mat-list-item>
+
+    <mat-list-item>
+      <span matListItemTitle>Количество изданий</span>
+      <span matListItemLine>{{book.edition_count}}</span>
+    </mat-list-item>
+
+  </mat-list>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Закрыть</button>
+</mat-dialog-actions>
